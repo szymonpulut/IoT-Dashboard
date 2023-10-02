@@ -10,7 +10,7 @@ As you can check out in this repo's history, I created the original version of t
 
 ## Quick overview
 
-Demo: [https://gfycat.com/weakrewardingcaterpillar](https://gfycat.com/weakrewardingcaterpillar)
+![iot-dashboard](https://github.com/szymonpulut/IoT-Dashboard/assets/1353480/6a3fdb7e-41e2-488f-8908-d2f401fb95cb)
 
 Displays current time, weather, forecast, air quality data. Connects to Google Calendar to show upcoming events. Displays camera feed. Shows data from smart home sensors, and can open small and main gate; plays audio alert when gate opens. Features automatic night mode.
 
