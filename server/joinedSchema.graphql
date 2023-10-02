@@ -1,0 +1,62 @@
+type Mutation {
+  mainGate(toggle: Boolean!): Boolean!
+  smallGate(toggle: Boolean!): Boolean!
+}
+
+type Subscription {
+  mainGateStatus: MainGateStatusEvent!
+  smallGateStatus: SmallGateStatusEvent!
+  sensorListUpdates: [SensorListUpdate!]!
+}
+
+enum MainGateStatus {
+  OPEN
+  CLOSED
+  PARTIALLY_OPEN
+  UNKNOWN
+}
+
+type MainGateStatusEvent {
+  status: MainGateStatus!
+}
+
+enum SmallGateStatus {
+  OPEN
+  CLOSED
+  UNKNOWN
+}
+
+type SmallGateStatusEvent {
+  status: SmallGateStatus!
+}
+
+type SensorListUpdate {
+  name: String!
+  value: Float!
+}
+
+type Query {
+  singleDayWeather(city: String!): SingleDayWeather
+  multiDayWeather(city: String!, dayCount: Int): [MultiDayWeather!]!
+}
+
+type SingleDayWeather {
+  temperature: SingleDayTemperature!
+  weatherCode: Int!
+}
+
+type SingleDayTemperature {
+  min: Float!
+  max: Float!
+}
+
+type MultiDayWeather {
+  temperature: Float!
+  weatherCode: Int!
+}
+
+schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}

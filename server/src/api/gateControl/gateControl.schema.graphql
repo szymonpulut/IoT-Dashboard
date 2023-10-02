@@ -1,0 +1,30 @@
+type Mutation {
+  mainGate(toggle: Boolean!): Boolean!
+  smallGate(toggle: Boolean!): Boolean!
+}
+
+type Subscription {
+  mainGateStatus: MainGateStatusEvent!
+  smallGateStatus: SmallGateStatusEvent!
+}
+
+enum MainGateStatus {
+  OPEN
+  CLOSED
+  PARTIALLY_OPEN
+  UNKNOWN
+}
+
+type MainGateStatusEvent {
+  status: MainGateStatus!
+}
+
+enum SmallGateStatus {
+  OPEN
+  CLOSED
+  UNKNOWN
+}
+
+type SmallGateStatusEvent {
+  status: SmallGateStatus!
+}

@@ -1,0 +1,8 @@
+type Subscription {
+  sensorListUpdates: [SensorListUpdate!]!
+}
+
+type SensorListUpdate {
+  name: String!
+  value: Float!
+}

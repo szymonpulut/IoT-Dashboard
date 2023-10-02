@@ -1,0 +1,19 @@
+type Query {
+  singleDayWeather(city: String!): SingleDayWeather
+  multiDayWeather(city: String!, dayCount: Int): [MultiDayWeather!]!
+}
+
+type SingleDayWeather {
+  temperature: SingleDayTemperature!
+  weatherCode: Int!
+}
+
+type SingleDayTemperature {
+  min: Float!
+  max: Float!
+}
+
+type MultiDayWeather {
+  temperature: Float!
+  weatherCode: Int!
+}

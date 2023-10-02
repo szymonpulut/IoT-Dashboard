@@ -1,31 +1,26 @@
-# Tablet Dashboard
+# IoT Dashboard
 
 ## Description
 
-A dashboard application for my custom smart home system. It is a copy of Tablet Dashboard Legacy, refreshed and rebuilt in React. I focused on using custom hooks with Context API as a replacement for Redux.
+A full stack web application to display and interact with custom smart home system. It is designed to be run on RPi, and displayed on a tablet.
+
+React frontend interacts with an on-premise Node.js backend server through GraphQL, utilizing HTTP for queries and WebSockets for subscriptions. Node.js server integrates with external APIs (weather, air quality, Google Calendar) through REST, alongside MQTT broker connectivity via WebSockets, enabling efficient messaging queue capabilities and “smart” device control.
+
+As you can check out in this repo's history, I created the original version of this application in 2020, then I significantly refactored it in 2023. As such this might have some small bits of legacy code here and there (mostly it's around styling).
 
 ## Quick overview
 
 Demo: [https://gfycat.com/weakrewardingcaterpillar](https://gfycat.com/weakrewardingcaterpillar)
 
-Displays current time, weather, forecast, air quality data, COVID-19 statistics. Connects to Google Calendar to show upcoming events. Displays camera feed. Shows data from smart home sensors (MQTT through WebSockets), and can open small and main gate; plays audio alert when gate opens. Features automatic night mode.
+Displays current time, weather, forecast, air quality data. Connects to Google Calendar to show upcoming events. Displays camera feed. Shows data from smart home sensors, and can open small and main gate; plays audio alert when gate opens. Features automatic night mode.
 
 ## Technologies used & features
 
-TypeScript, React (with custom hooks & context), styled-components, Google API, axios, MQTT, date-fns, and many more.
+Frontend: Vite, TypeScript, React, styled-components, Apollo Client, GraphQL, WebSockets
+Backend: TypeScript, Express.js, Apollo, GraphQL, MQTT, Zod
 
 ## TODO
 
--   switch from "any" type to specific types everywhere (currently about 90% are specific types, 10% "any")
--   create a backend layer for caching API responses & MQTT feed
--   other minor code improvements
-
-## Running
-
-```
-npm install
-```
-
-`npm run start` starts development server
-
-`npm run build` creates production ready package
+- Add backend calendar integration (currently it doesn't work yet - due to issues with OAuth2)
+- Implement a seamless way of launching both apps (Docker?)
+- A few things specific to BE/FE
