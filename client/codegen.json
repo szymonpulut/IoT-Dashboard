@@ -1,0 +1,6 @@
+{
+  "overwrite": true,
+  "schema": "../server/joinedSchema.graphql",
+  "documents": "src/**/*.query.ts",
+  "generates": { "src/generated/": { "preset": "client", "plugins": [] } }
+}
