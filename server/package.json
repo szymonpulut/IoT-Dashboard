@@ -15,7 +15,11 @@
     "start": "concurrently \"nodemon\" \"graphql-codegen --config codegen.json --watch\"",
     "codegen": "graphql-codegen --config codegen.json",
     "genCodegen": "tsx scripts/generateJoinedGraphQLSchema.ts && cp joinedSchema.graphql dist/",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepare": "cd ../ && husky install ./server/.husky",
+    "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
+    "precommit": "lint-staged",
+    "prettier": "prettier --write"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",
@@ -49,6 +53,8 @@
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
     "nodemon": "^3.0.1",
     "prettier": "^3.0.3",
     "standard-version": "^9.5.0",
@@ -61,5 +67,11 @@
   },
   "_moduleAliases": {
     "@": "dist"
+  },
+  "lint-staged": {
+    "{src,app,lib}/**/*.{ts,tsx,json,css}": [
+      "npm run prettier",
+      "npm run lint"
+    ]
   }
 }
