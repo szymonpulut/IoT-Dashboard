@@ -14,7 +14,8 @@
     "build": "tsc",
     "start": "concurrently \"nodemon\" \"graphql-codegen --config codegen.json --watch\"",
     "codegen": "graphql-codegen --config codegen.json",
-    "genCodegen": "tsx scripts/generateJoinedGraphQLSchema.ts && cp joinedSchema.graphql dist/"
+    "genCodegen": "tsx scripts/generateJoinedGraphQLSchema.ts && cp joinedSchema.graphql dist/",
+    "release": "standard-version"
   },
   "dependencies": {
     "@apollo/server": "^4.9.3",
