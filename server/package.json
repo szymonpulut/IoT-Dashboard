@@ -17,7 +17,7 @@
     "genCodegen": "tsx scripts/generateJoinedGraphQLSchema.ts && cp joinedSchema.graphql dist/",
     "release": "standard-version",
     "prepare": "cd ../ && husky install ./server/.husky",
-    "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint --ext ts --report-unused-disable-directives --max-warnings 0",
     "precommit": "lint-staged",
     "prettier": "prettier --write"
   },
