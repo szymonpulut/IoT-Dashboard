@@ -16,17 +16,6 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-export type Event = {
-  __typename?: 'Event';
-  date: Scalars['String']['output'];
-  name: Scalars['String']['output'];
-};
-
-export type EventList = {
-  __typename?: 'EventList';
-  events: Array<Event>;
-};
-
 export enum MainGateStatus {
   Closed = 'CLOSED',
   Open = 'OPEN',
@@ -42,14 +31,13 @@ export type MainGateStatusEvent = {
 export type MultiDayWeather = {
   __typename?: 'MultiDayWeather';
   temperature: Scalars['Float']['output'];
-  weather: Scalars['String']['output'];
   weatherCode: Scalars['Int']['output'];
 };
 
 export type Mutation = {
   __typename?: 'Mutation';
   mainGate: Scalars['Boolean']['output'];
-  smallGate?: Maybe<Scalars['Boolean']['output']>;
+  smallGate: Scalars['Boolean']['output'];
 };
 
 
@@ -64,7 +52,6 @@ export type MutationSmallGateArgs = {
 
 export type Query = {
   __typename?: 'Query';
-  calendar: EventList;
   multiDayWeather: Array<MultiDayWeather>;
   singleDayWeather?: Maybe<SingleDayWeather>;
 };
@@ -95,7 +82,6 @@ export type SingleDayTemperature = {
 export type SingleDayWeather = {
   __typename?: 'SingleDayWeather';
   temperature: SingleDayTemperature;
-  weather: Scalars['String']['output'];
   weatherCode: Scalars['Int']['output'];
 };
 
@@ -116,11 +102,6 @@ export type Subscription = {
   sensorListUpdates: Array<SensorListUpdate>;
   smallGateStatus: SmallGateStatusEvent;
 };
-
-export type CalendarQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type CalendarQuery = { __typename?: 'Query', calendar: { __typename?: 'EventList', events: Array<{ __typename?: 'Event', name: string, date: string }> } };
 
 export type MainGateStatusSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
@@ -144,7 +125,7 @@ export type OpenSmallGateMutationVariables = Exact<{
 }>;
 
 
-export type OpenSmallGateMutation = { __typename?: 'Mutation', smallGate?: boolean | null };
+export type OpenSmallGateMutation = { __typename?: 'Mutation', smallGate: boolean };
 
 export type SensorListUpdatesSubscriptionVariables = Exact<{ [key: string]: never; }>;
 
@@ -159,7 +140,6 @@ export type WeatherQueryVariables = Exact<{
 export type WeatherQuery = { __typename?: 'Query', singleDayWeather?: { __typename?: 'SingleDayWeather', weatherCode: number, temperature: { __typename?: 'SingleDayTemperature', max: number, min: number } } | null, multiDayWeather: Array<{ __typename?: 'MultiDayWeather', weatherCode: number, temperature: number }> };
 
 
-export const CalendarDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Calendar"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"calendar"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"events"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"date"}}]}}]}}]}}]} as unknown as DocumentNode<CalendarQuery, CalendarQueryVariables>;
 export const MainGateStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"MainGateStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mainGateStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<MainGateStatusSubscription, MainGateStatusSubscriptionVariables>;
 export const SmallGateStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"SmallGateStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"smallGateStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<SmallGateStatusSubscription, SmallGateStatusSubscriptionVariables>;
 export const OpenMainGateDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"OpenMainGate"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"toggle"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mainGate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"toggle"},"value":{"kind":"Variable","name":{"kind":"Name","value":"toggle"}}}]}]}}]} as unknown as DocumentNode<OpenMainGateMutation, OpenMainGateMutationVariables>;

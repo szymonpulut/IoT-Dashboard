@@ -3,3 +3,5 @@ dist
 
 .env
 src/mqtt/mqtt.topics.secret.ts
+
+.DS_Store
