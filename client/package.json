@@ -2,7 +2,7 @@
   "name": "iot-dashboard-client",
   "description": "A dashboard enabling me to monitor and control custom IoT devices - client - to be run on RPi and displayed on a tablet",
   "private": true,
-  "version": "2.0.0",
+  "version": "2.1.0",
   "author": "Szymon Pulut",
   "email": "szymon.pulut@gmail.com",
   "url": "https://szymonpulut.com/",
