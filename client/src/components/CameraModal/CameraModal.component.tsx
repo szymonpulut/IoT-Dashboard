@@ -36,7 +36,7 @@ const CameraModalComponent: React.FC<CameraModalComponentProps> = ({
   const preventCaching = `&preventCaching=${Math.floor(
     Math.random() * 1_000_000,
   )}`
-  const cameraView = `${process.env.REACT_APP_CAMERA_FEED_URL}${preventCaching}`
+  const cameraView = `${import.meta.env.VITE_CAMERA_FEED_URL}${preventCaching}`
 
   return isOn
     ? ReactDOM.createPortal(

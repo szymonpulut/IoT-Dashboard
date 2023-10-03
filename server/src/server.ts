@@ -6,8 +6,10 @@ import cors from 'cors'
 import express from 'express'
 import fs from 'fs'
 import { print } from 'graphql'
-import { useServer as useWsServer } from 'graphql-ws/lib/use/ws.js'
+import { useServer as useWsServer } from 'graphql-ws/lib/use/ws'
 import { WebSocketServer } from 'ws'
+
+import 'dotenv/config'
 
 import messageReceived from './mqtt/mqtt.messageReceived.js'
 import { topics } from './mqtt/mqtt.topics.js'
@@ -34,24 +36,20 @@ fs.writeFileSync('joinedSchema.graphql', printedTypeDefs)
 
 const schema = makeExecutableSchema({ typeDefs, resolvers })
 
-const apolloServer = new ApolloServer({
-  schema,
-})
-
-await apolloServer.start()
-
 // Express.js
 const app = express()
 app.use(cors())
 app.use(express.json())
 
+const apolloServer = new ApolloServer({
+  schema,
+})
+await apolloServer.start()
+
 app.use('/graphql', apolloMiddleware(apolloServer))
 
 const httpServer = createHttpServer(app)
-const wsServer = new WebSocketServer({
-  server: httpServer,
-  path: '/graphql',
-})
+const wsServer = new WebSocketServer({ server: httpServer, path: '/graphql' })
 useWsServer({ schema }, wsServer)
 
 httpServer.listen({ port: HTTP_PORT }, () => {

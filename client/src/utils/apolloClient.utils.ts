@@ -9,12 +9,12 @@ import { getMainDefinition } from '@apollo/client/utilities'
 import { createClient as createWsClient } from 'graphql-ws'
 
 const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_APOLLO_GRAPHQL_HTTP_URL,
+  uri: import.meta.env.VITE_APOLLO_GRAPHQL_HTTP_URL,
 })
 
 const wsLink = new GraphQLWsLink(
   createWsClient({
-    url: process.env.REACT_APP_APOLLO_GRAPHQL_WS_URL,
+    url: import.meta.env.VITE_APOLLO_GRAPHQL_WS_URL,
   }),
 )
 
