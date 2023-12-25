@@ -18,6 +18,7 @@ const documents = {
     "\n  mutation OpenMainGate($toggle: Boolean!) {\n    mainGate(toggle: $toggle)\n  }\n": types.OpenMainGateDocument,
     "\n  mutation OpenSmallGate($toggle: Boolean!) {\n    smallGate(toggle: $toggle)\n  }\n": types.OpenSmallGateDocument,
     "\n  subscription SensorListUpdates {\n    sensorListUpdates {\n      name\n      value\n    }\n  }\n": types.SensorListUpdatesDocument,
+    "\n  query AirQuality($latitude: String!, $longtitude: String!) {\n    airQuality(latitude: $latitude, longtitude: $longtitude) {\n      PM25 {\n        pollutionType\n        data {\n          value\n          alertThreshold\n        }\n      }\n      PM10 {\n        pollutionType\n        data {\n          value\n          alertThreshold\n        }\n      }\n    }\n  }\n": types.AirQualityDocument,
     "\n  query Weather($city: String!) {\n    singleDayWeather(city: $city) {\n      weatherCode\n      temperature {\n        max\n        min\n      }\n    }\n    multiDayWeather(city: $city) {\n      weatherCode\n      temperature\n    }\n  }\n": types.WeatherDocument,
 };
 
@@ -55,6 +56,10 @@ export function graphql(source: "\n  mutation OpenSmallGate($toggle: Boolean!) {
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  subscription SensorListUpdates {\n    sensorListUpdates {\n      name\n      value\n    }\n  }\n"): (typeof documents)["\n  subscription SensorListUpdates {\n    sensorListUpdates {\n      name\n      value\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query AirQuality($latitude: String!, $longtitude: String!) {\n    airQuality(latitude: $latitude, longtitude: $longtitude) {\n      PM25 {\n        pollutionType\n        data {\n          value\n          alertThreshold\n        }\n      }\n      PM10 {\n        pollutionType\n        data {\n          value\n          alertThreshold\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query AirQuality($latitude: String!, $longtitude: String!) {\n    airQuality(latitude: $latitude, longtitude: $longtitude) {\n      PM25 {\n        pollutionType\n        data {\n          value\n          alertThreshold\n        }\n      }\n      PM10 {\n        pollutionType\n        data {\n          value\n          alertThreshold\n        }\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

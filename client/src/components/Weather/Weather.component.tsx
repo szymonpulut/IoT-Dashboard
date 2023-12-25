@@ -3,24 +3,39 @@ import styled from 'styled-components'
 
 import MultiDayComponent from './MultiDay/MultiDay.component'
 import SingleDayComponent from './SingleDay/SingleDay.component'
+import { mapAirQualityToProps } from './mapAirQualityToProps.util'
+import useAirQuality from './useAirQuality.query'
 import useWeather from './useWeather.query'
 
 const WeatherComponent: React.FC = () => {
-  const { data, loading, error } = useWeather('KRK')
+  const {
+    data: weatherData,
+    loading: weatherLoading,
+    error: weatherError,
+  } = useWeather('KRK')
+  const {
+    data: airQualityData,
+    loading: airQualityLoading,
+    error: airQualityError,
+  } = useAirQuality('KRK')
 
-  if (loading) {
+  if (weatherLoading || airQualityLoading) {
     return <WeatherComponentStyled>Loading...</WeatherComponentStyled>
   }
 
-  if (error) {
+  if (weatherError || airQualityError) {
     return <WeatherComponentStyled>Error</WeatherComponentStyled>
   }
 
-  const { singleDayWeather, multiDayWeather } = data!
+  const { singleDayWeather, multiDayWeather } = weatherData!
+  const { airQuality } = airQualityData!
 
   return (
     <WeatherComponentStyled>
-      <SingleDayComponent weather={singleDayWeather} />
+      <SingleDayComponent
+        weather={singleDayWeather!}
+        airQuality={mapAirQualityToProps(airQuality)}
+      />
       <MultiDayComponent weather={multiDayWeather} />
     </WeatherComponentStyled>
   )

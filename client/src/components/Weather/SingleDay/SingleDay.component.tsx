@@ -5,10 +5,14 @@ import useTheme from '@/src/hooks/useTheme.hook'
 
 import { mapWeatherCodeToImage } from '../mapWeatherCodeToImage.util'
 
-interface SingleDayComponentProps {
+export interface SingleDayComponentProps {
   weather: {
     temperature: { max: number; min: number }
     weatherCode: number
+  }
+  airQuality: {
+    PM25: { value: number; color: string }
+    PM10: { value: number; color: string }
   }
 }
 
@@ -17,6 +21,7 @@ const SingleDayComponent: React.FC<SingleDayComponentProps> = ({
     temperature: { max, min },
     weatherCode,
   },
+  airQuality,
 }) => {
   const { currentTheme } = useTheme()
 
@@ -36,6 +41,16 @@ const SingleDayComponent: React.FC<SingleDayComponentProps> = ({
           <p>HIGH</p>
         </HighTemp>
       </Temps>
+      <AirQualityText>
+        PM2.5:{' '}
+        <span style={{ color: airQuality.PM25.color }}>
+          {airQuality.PM25.value} &#181;g/m&#xb3;
+        </span>{' '}
+        | PM10:{' '}
+        <span style={{ color: airQuality.PM10.color }}>
+          {airQuality.PM10.value} &#181;g/m&#xb3;
+        </span>
+      </AirQualityText>
     </SingleDayComponentStyled>
   )
 }
@@ -79,6 +94,10 @@ const HighTemp = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
+`
+
+const AirQualityText = styled.span`
+  font-size: 0.7em;
 `
 
 export default SingleDayComponent
