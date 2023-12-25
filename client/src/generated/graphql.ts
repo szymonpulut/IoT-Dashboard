@@ -16,6 +16,24 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type AirQuality = {
+  __typename?: 'AirQuality';
+  PM10: AirQualityData;
+  PM25: AirQualityData;
+};
+
+export type AirQualityData = {
+  __typename?: 'AirQualityData';
+  data: AirQualityPollutionData;
+  pollutionType: Scalars['String']['output'];
+};
+
+export type AirQualityPollutionData = {
+  __typename?: 'AirQualityPollutionData';
+  alertThreshold: Scalars['String']['output'];
+  value: Scalars['Float']['output'];
+};
+
 export enum MainGateStatus {
   Closed = 'CLOSED',
   Open = 'OPEN',
@@ -52,19 +70,28 @@ export type MutationSmallGateArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  airQuality: AirQuality;
   multiDayWeather: Array<MultiDayWeather>;
-  singleDayWeather?: Maybe<SingleDayWeather>;
+  singleDayWeather: SingleDayWeather;
+};
+
+
+export type QueryAirQualityArgs = {
+  latitude: Scalars['String']['input'];
+  longitude: Scalars['String']['input'];
 };
 
 
 export type QueryMultiDayWeatherArgs = {
-  city: Scalars['String']['input'];
   dayCount?: InputMaybe<Scalars['Int']['input']>;
+  latitude: Scalars['String']['input'];
+  longitude: Scalars['String']['input'];
 };
 
 
 export type QuerySingleDayWeatherArgs = {
-  city: Scalars['String']['input'];
+  latitude: Scalars['String']['input'];
+  longitude: Scalars['String']['input'];
 };
 
 export type SensorListUpdate = {
@@ -132,12 +159,21 @@ export type SensorListUpdatesSubscriptionVariables = Exact<{ [key: string]: neve
 
 export type SensorListUpdatesSubscription = { __typename?: 'Subscription', sensorListUpdates: Array<{ __typename?: 'SensorListUpdate', name: string, value: number }> };
 
-export type WeatherQueryVariables = Exact<{
-  city: Scalars['String']['input'];
+export type AirQualityQueryVariables = Exact<{
+  latitude: Scalars['String']['input'];
+  longitude: Scalars['String']['input'];
 }>;
 
 
-export type WeatherQuery = { __typename?: 'Query', singleDayWeather?: { __typename?: 'SingleDayWeather', weatherCode: number, temperature: { __typename?: 'SingleDayTemperature', max: number, min: number } } | null, multiDayWeather: Array<{ __typename?: 'MultiDayWeather', weatherCode: number, temperature: number }> };
+export type AirQualityQuery = { __typename?: 'Query', airQuality: { __typename?: 'AirQuality', PM25: { __typename?: 'AirQualityData', pollutionType: string, data: { __typename?: 'AirQualityPollutionData', value: number, alertThreshold: string } }, PM10: { __typename?: 'AirQualityData', pollutionType: string, data: { __typename?: 'AirQualityPollutionData', value: number, alertThreshold: string } } } };
+
+export type WeatherQueryVariables = Exact<{
+  latitude: Scalars['String']['input'];
+  longitude: Scalars['String']['input'];
+}>;
+
+
+export type WeatherQuery = { __typename?: 'Query', singleDayWeather: { __typename?: 'SingleDayWeather', weatherCode: number, temperature: { __typename?: 'SingleDayTemperature', max: number, min: number } }, multiDayWeather: Array<{ __typename?: 'MultiDayWeather', weatherCode: number, temperature: number }> };
 
 
 export const MainGateStatusDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"MainGateStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mainGateStatus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}}]}}]}}]} as unknown as DocumentNode<MainGateStatusSubscription, MainGateStatusSubscriptionVariables>;
@@ -145,4 +181,5 @@ export const SmallGateStatusDocument = {"kind":"Document","definitions":[{"kind"
 export const OpenMainGateDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"OpenMainGate"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"toggle"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mainGate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"toggle"},"value":{"kind":"Variable","name":{"kind":"Name","value":"toggle"}}}]}]}}]} as unknown as DocumentNode<OpenMainGateMutation, OpenMainGateMutationVariables>;
 export const OpenSmallGateDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"OpenSmallGate"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"toggle"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Boolean"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"smallGate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"toggle"},"value":{"kind":"Variable","name":{"kind":"Name","value":"toggle"}}}]}]}}]} as unknown as DocumentNode<OpenSmallGateMutation, OpenSmallGateMutationVariables>;
 export const SensorListUpdatesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"SensorListUpdates"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"sensorListUpdates"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]} as unknown as DocumentNode<SensorListUpdatesSubscription, SensorListUpdatesSubscriptionVariables>;
-export const WeatherDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Weather"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"city"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"singleDayWeather"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"city"},"value":{"kind":"Variable","name":{"kind":"Name","value":"city"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"weatherCode"}},{"kind":"Field","name":{"kind":"Name","value":"temperature"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"max"}},{"kind":"Field","name":{"kind":"Name","value":"min"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"multiDayWeather"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"city"},"value":{"kind":"Variable","name":{"kind":"Name","value":"city"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"weatherCode"}},{"kind":"Field","name":{"kind":"Name","value":"temperature"}}]}}]}}]} as unknown as DocumentNode<WeatherQuery, WeatherQueryVariables>;
+export const AirQualityDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"AirQuality"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"latitude"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"longitude"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"airQuality"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"latitude"},"value":{"kind":"Variable","name":{"kind":"Name","value":"latitude"}}},{"kind":"Argument","name":{"kind":"Name","value":"longitude"},"value":{"kind":"Variable","name":{"kind":"Name","value":"longitude"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"PM25"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pollutionType"}},{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"alertThreshold"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"PM10"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"pollutionType"}},{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"value"}},{"kind":"Field","name":{"kind":"Name","value":"alertThreshold"}}]}}]}}]}}]}}]} as unknown as DocumentNode<AirQualityQuery, AirQualityQueryVariables>;
+export const WeatherDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Weather"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"latitude"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"longitude"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"singleDayWeather"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"latitude"},"value":{"kind":"Variable","name":{"kind":"Name","value":"latitude"}}},{"kind":"Argument","name":{"kind":"Name","value":"longitude"},"value":{"kind":"Variable","name":{"kind":"Name","value":"longitude"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"weatherCode"}},{"kind":"Field","name":{"kind":"Name","value":"temperature"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"max"}},{"kind":"Field","name":{"kind":"Name","value":"min"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"multiDayWeather"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"latitude"},"value":{"kind":"Variable","name":{"kind":"Name","value":"latitude"}}},{"kind":"Argument","name":{"kind":"Name","value":"longitude"},"value":{"kind":"Variable","name":{"kind":"Name","value":"longitude"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"weatherCode"}},{"kind":"Field","name":{"kind":"Name","value":"temperature"}}]}}]}}]} as unknown as DocumentNode<WeatherQuery, WeatherQueryVariables>;

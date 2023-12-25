@@ -16,6 +16,24 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
+export type AirQuality = {
+  __typename?: 'AirQuality';
+  PM10: AirQualityData;
+  PM25: AirQualityData;
+};
+
+export type AirQualityData = {
+  __typename?: 'AirQualityData';
+  data: AirQualityPollutionData;
+  pollutionType: Scalars['String']['output'];
+};
+
+export type AirQualityPollutionData = {
+  __typename?: 'AirQualityPollutionData';
+  alertThreshold: Scalars['String']['output'];
+  value: Scalars['Float']['output'];
+};
+
 export enum MainGateStatus {
   Closed = 'CLOSED',
   Open = 'OPEN',
@@ -52,19 +70,28 @@ export type MutationSmallGateArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  airQuality: AirQuality;
   multiDayWeather: Array<MultiDayWeather>;
-  singleDayWeather?: Maybe<SingleDayWeather>;
+  singleDayWeather: SingleDayWeather;
+};
+
+
+export type QueryAirQualityArgs = {
+  latitude: Scalars['String']['input'];
+  longitude: Scalars['String']['input'];
 };
 
 
 export type QueryMultiDayWeatherArgs = {
-  city: Scalars['String']['input'];
   dayCount?: InputMaybe<Scalars['Int']['input']>;
+  latitude: Scalars['String']['input'];
+  longitude: Scalars['String']['input'];
 };
 
 
 export type QuerySingleDayWeatherArgs = {
-  city: Scalars['String']['input'];
+  latitude: Scalars['String']['input'];
+  longitude: Scalars['String']['input'];
 };
 
 export type SensorListUpdate = {
@@ -174,6 +201,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = {
+  AirQuality: ResolverTypeWrapper<AirQuality>;
+  AirQualityData: ResolverTypeWrapper<AirQualityData>;
+  AirQualityPollutionData: ResolverTypeWrapper<AirQualityPollutionData>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
@@ -193,6 +223,9 @@ export type ResolversTypes = {
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = {
+  AirQuality: AirQuality;
+  AirQualityData: AirQualityData;
+  AirQualityPollutionData: AirQualityPollutionData;
   Boolean: Scalars['Boolean']['output'];
   Float: Scalars['Float']['output'];
   Int: Scalars['Int']['output'];
@@ -206,6 +239,24 @@ export type ResolversParentTypes = {
   SmallGateStatusEvent: SmallGateStatusEvent;
   String: Scalars['String']['output'];
   Subscription: {};
+};
+
+export type AirQualityResolvers<ContextType = any, ParentType extends ResolversParentTypes['AirQuality'] = ResolversParentTypes['AirQuality']> = {
+  PM10?: Resolver<ResolversTypes['AirQualityData'], ParentType, ContextType>;
+  PM25?: Resolver<ResolversTypes['AirQualityData'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type AirQualityDataResolvers<ContextType = any, ParentType extends ResolversParentTypes['AirQualityData'] = ResolversParentTypes['AirQualityData']> = {
+  data?: Resolver<ResolversTypes['AirQualityPollutionData'], ParentType, ContextType>;
+  pollutionType?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type AirQualityPollutionDataResolvers<ContextType = any, ParentType extends ResolversParentTypes['AirQualityPollutionData'] = ResolversParentTypes['AirQualityPollutionData']> = {
+  alertThreshold?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  value?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type MainGateStatusEventResolvers<ContextType = any, ParentType extends ResolversParentTypes['MainGateStatusEvent'] = ResolversParentTypes['MainGateStatusEvent']> = {
@@ -225,8 +276,9 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  multiDayWeather?: Resolver<Array<ResolversTypes['MultiDayWeather']>, ParentType, ContextType, RequireFields<QueryMultiDayWeatherArgs, 'city'>>;
-  singleDayWeather?: Resolver<Maybe<ResolversTypes['SingleDayWeather']>, ParentType, ContextType, RequireFields<QuerySingleDayWeatherArgs, 'city'>>;
+  airQuality?: Resolver<ResolversTypes['AirQuality'], ParentType, ContextType, RequireFields<QueryAirQualityArgs, 'latitude' | 'longitude'>>;
+  multiDayWeather?: Resolver<Array<ResolversTypes['MultiDayWeather']>, ParentType, ContextType, RequireFields<QueryMultiDayWeatherArgs, 'latitude' | 'longitude'>>;
+  singleDayWeather?: Resolver<ResolversTypes['SingleDayWeather'], ParentType, ContextType, RequireFields<QuerySingleDayWeatherArgs, 'latitude' | 'longitude'>>;
 };
 
 export type SensorListUpdateResolvers<ContextType = any, ParentType extends ResolversParentTypes['SensorListUpdate'] = ResolversParentTypes['SensorListUpdate']> = {
@@ -259,6 +311,9 @@ export type SubscriptionResolvers<ContextType = any, ParentType extends Resolver
 };
 
 export type Resolvers<ContextType = any> = {
+  AirQuality?: AirQualityResolvers<ContextType>;
+  AirQualityData?: AirQualityDataResolvers<ContextType>;
+  AirQualityPollutionData?: AirQualityPollutionDataResolvers<ContextType>;
   MainGateStatusEvent?: MainGateStatusEventResolvers<ContextType>;
   MultiDayWeather?: MultiDayWeatherResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;

@@ -1,6 +1,10 @@
 type Query {
-  singleDayWeather(city: String!): SingleDayWeather
-  multiDayWeather(city: String!, dayCount: Int): [MultiDayWeather!]!
+  singleDayWeather(latitude: String!, longitude: String!): SingleDayWeather!
+  multiDayWeather(
+    latitude: String!
+    longitude: String!
+    dayCount: Int
+  ): [MultiDayWeather!]!
 }
 
 type SingleDayWeather {

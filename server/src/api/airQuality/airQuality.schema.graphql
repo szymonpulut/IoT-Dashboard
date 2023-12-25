@@ -1,0 +1,18 @@
+type Query {
+  airQuality(latitude: String!, longitude: String!): AirQuality!
+}
+
+type AirQuality {
+  PM10: AirQualityData!
+  PM25: AirQualityData!
+}
+
+type AirQualityData {
+  pollutionType: String! # pm25 or pm10
+  data: AirQualityPollutionData!
+}
+
+type AirQualityPollutionData {
+  value: Float!
+  alertThreshold: String! # low, medium, high
+}

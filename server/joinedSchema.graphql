@@ -1,3 +1,24 @@
+type Query {
+  airQuality(latitude: String!, longitude: String!): AirQuality!
+  singleDayWeather(latitude: String!, longitude: String!): SingleDayWeather!
+  multiDayWeather(latitude: String!, longitude: String!, dayCount: Int): [MultiDayWeather!]!
+}
+
+type AirQuality {
+  PM10: AirQualityData!
+  PM25: AirQualityData!
+}
+
+type AirQualityData {
+  pollutionType: String!
+  data: AirQualityPollutionData!
+}
+
+type AirQualityPollutionData {
+  value: Float!
+  alertThreshold: String!
+}
+
 type Mutation {
   mainGate(toggle: Boolean!): Boolean!
   smallGate(toggle: Boolean!): Boolean!
@@ -30,16 +51,6 @@ type SmallGateStatusEvent {
   status: SmallGateStatus!
 }
 
-type SensorListUpdate {
-  name: String!
-  value: Float!
-}
-
-type Query {
-  singleDayWeather(city: String!): SingleDayWeather
-  multiDayWeather(city: String!, dayCount: Int): [MultiDayWeather!]!
-}
-
 type SingleDayWeather {
   temperature: SingleDayTemperature!
   weatherCode: Int!
@@ -53,6 +64,11 @@ type SingleDayTemperature {
 type MultiDayWeather {
   temperature: Float!
   weatherCode: Int!
+}
+
+type SensorListUpdate {
+  name: String!
+  value: Float!
 }
 
 schema {
