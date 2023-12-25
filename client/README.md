@@ -10,7 +10,7 @@ Vite, TypeScript, React, styled-components, Apollo Client, GraphQL, WebSockets
 
 ## Directory structure
 
-This project directory structure is domain driven, where the domains are `components`. I am planning to add one level of subdirectories, e.g. `hooks`, `queries`.
+This project directory structure is domain driven, where the domains are `components`.
 
 ```
 src
@@ -21,12 +21,12 @@ src
 └── components
 │   └── Name
 |      └──└── Name.component.tsx
-│      └──└── useName.query.ts
-│      └──└── useName.hook.ts
-│      └──└── generateName.util.ts
-│      └──└── models
-│      └──└── routes
-│      └──└── utils
+│         └── queries
+│         └──└── useQuery.query.ts
+│         └── hooks
+│         └──└── useHook.hook.ts
+│         └── utils
+│         └──└── tool.util.ts
 └── contexts
 └── hooks
 └── utils
@@ -44,6 +44,5 @@ src
 
 ## TODO
 
-- Rework directory structure
 - Rework `@` import alias - it should point to `src/`
 - Dockerise

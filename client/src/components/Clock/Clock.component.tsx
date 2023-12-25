@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import useTheme from '@/src/hooks/useTheme.hook'
 
-import useClock from './useClock.hook'
+import useClock from './hooks/useClock.hook'
 
 const ClockComponent: React.FC = () => {
   const { time, date } = useClock()

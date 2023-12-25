@@ -1,6 +1,7 @@
 import type { AirQualityQuery } from '@/src/generated/graphql'
 
-import type { SingleDayComponentProps } from './SingleDay/SingleDay.component'
+import type { SingleDayComponentProps } from '../components/SingleDay/SingleDay.component'
+
 import { mapThresholdToColor } from './mapThresholdToColor.util'
 
 export const mapAirQualityToProps = (

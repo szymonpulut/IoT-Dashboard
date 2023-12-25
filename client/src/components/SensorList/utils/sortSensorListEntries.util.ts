@@ -1,10 +1,8 @@
-import type { SensorUpdate } from './useSensorListUpdatesSubscription.query'
-
 const PREDEFINED_ORDER = ['Szymon', 'Garage', 'Outside']
 
 export const sortSensorListEntries = (
-  entryA: SensorUpdate,
-  entryB: SensorUpdate,
+  entryA: { name: string },
+  entryB: { name: string },
 ) => {
   const indexA = PREDEFINED_ORDER.indexOf(entryA.name)
   const indexB = PREDEFINED_ORDER.indexOf(entryB.name)

@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import { useSensorListUpdatesSubscription } from './queries/useSensorListUpdatesSubscription.query'
+import { sortSensorListEntries } from './utils/sortSensorListEntries.util'
 import SensorListEntryComponent from './SensorListEntry.component'
-import { sortSensorListEntries } from './sortSensorListEntries.util'
-import { useSensorListUpdatesSubscription } from './useSensorListUpdatesSubscription.query'
 
 interface SensorListComponentProps {
   onClick: () => void

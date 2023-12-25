@@ -1,11 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import MultiDayComponent from './MultiDay/MultiDay.component'
-import SingleDayComponent from './SingleDay/SingleDay.component'
-import { mapAirQualityToProps } from './mapAirQualityToProps.util'
-import useAirQuality from './useAirQuality.query'
-import useWeather from './useWeather.query'
+import MultiDayComponent from './components/MultiDay/MultiDay.component'
+import SingleDayComponent from './components/SingleDay/SingleDay.component'
+import useAirQuality from './queries/useAirQuality.query'
+import useWeather from './queries/useWeather.query'
+import { mapAirQualityToProps } from './utils/mapAirQualityToProps.util'
 
 const WeatherComponent: React.FC = () => {
   const {

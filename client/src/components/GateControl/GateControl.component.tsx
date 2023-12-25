@@ -4,16 +4,16 @@ import styled from 'styled-components'
 
 import playAlertSound from '@/src/utils/playAlertSound.utils'
 
-import MainGateButtonComponent from './MainGateButton.component'
-import SmallGateButtonComponent from './SmallGateButton.component'
 import {
   useMainGateStatusSubscription,
   useSmallGateStatusSubscription,
-} from './useMainGateStatusSubscription.query'
+} from './queries/useMainGateStatusSubscription.query'
 import {
   useOpenMainGateMutation,
   useOpenSmallGateMutation,
-} from './useOpenGateMutation.query'
+} from './queries/useOpenGateMutation.query'
+import MainGateButtonComponent from './MainGateButton.component'
+import SmallGateButtonComponent from './SmallGateButton.component'
 
 const GateControlComponent: React.FC = () => {
   const { status: mainGateStatus } = useMainGateStatusSubscription()
