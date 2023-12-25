@@ -78,7 +78,7 @@ export type Query = {
 
 export type QueryAirQualityArgs = {
   latitude: Scalars['String']['input'];
-  longtitude: Scalars['String']['input'];
+  longitude: Scalars['String']['input'];
 };
 
 
@@ -276,7 +276,7 @@ export type MutationResolvers<ContextType = any, ParentType extends ResolversPar
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
-  airQuality?: Resolver<ResolversTypes['AirQuality'], ParentType, ContextType, RequireFields<QueryAirQualityArgs, 'latitude' | 'longtitude'>>;
+  airQuality?: Resolver<ResolversTypes['AirQuality'], ParentType, ContextType, RequireFields<QueryAirQualityArgs, 'latitude' | 'longitude'>>;
   multiDayWeather?: Resolver<Array<ResolversTypes['MultiDayWeather']>, ParentType, ContextType, RequireFields<QueryMultiDayWeatherArgs, 'latitude' | 'longitude'>>;
   singleDayWeather?: Resolver<ResolversTypes['SingleDayWeather'], ParentType, ContextType, RequireFields<QuerySingleDayWeatherArgs, 'latitude' | 'longitude'>>;
 };

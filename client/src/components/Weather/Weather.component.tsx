@@ -12,12 +12,19 @@ const WeatherComponent: React.FC = () => {
     data: weatherData,
     loading: weatherLoading,
     error: weatherError,
-  } = useWeather('KRK')
+  } = useWeather({
+    latitude: import.meta.env.VITE_LOCATION_LATITUDE,
+    longitude: import.meta.env.VITE_LOCATION_LONGITUDE,
+  })
+
   const {
     data: airQualityData,
     loading: airQualityLoading,
     error: airQualityError,
-  } = useAirQuality('KRK')
+  } = useAirQuality({
+    latitude: import.meta.env.VITE_LOCATION_LATITUDE,
+    longitude: import.meta.env.VITE_LOCATION_LONGITUDE,
+  })
 
   if (weatherLoading || airQualityLoading) {
     return <WeatherComponentStyled>Loading...</WeatherComponentStyled>

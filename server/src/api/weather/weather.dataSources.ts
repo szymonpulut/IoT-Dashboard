@@ -17,9 +17,10 @@ import { fetchDataWithCacheFactory } from '@/utils/fetchData.utils.js'
 
 const weatherCache = new CacheManager<DailyForecastSchemaExternal>()
 
-export const getSingleDayWeather = async (
-  city: string,
-): Promise<SingleDayWeather> => {
+export const getSingleDayWeather = async (location: {
+  latitude: string
+  longitude: string
+}): Promise<SingleDayWeather> => {
   const fetchWeatherDataWithCache = fetchDataWithCacheFactory({
     apiOptions: {
       url: WEATHER_API_URL,
@@ -34,7 +35,8 @@ export const getSingleDayWeather = async (
   })
 
   const weatherData = await fetchWeatherDataWithCache({
-    q: city,
+    lat: location.latitude,
+    lon: location.longitude,
     cnt: '1',
   })
 
@@ -44,7 +46,7 @@ export const getSingleDayWeather = async (
 }
 
 export const getMultiDayWeather = async (
-  city: string,
+  location: { latitude: string; longitude: string },
   dayCount = DEFAULT_MULTI_DAY_WEATHER_DAY_COUNT,
 ): Promise<MultiDayWeather> => {
   if (dayCount > 6) {
@@ -67,7 +69,8 @@ export const getMultiDayWeather = async (
   })
 
   const weatherData = await fetchWeatherDataWithCache({
-    q: city,
+    lat: location.latitude,
+    lon: location.longitude,
     cnt: `${dayCount + 1}`,
   })
 

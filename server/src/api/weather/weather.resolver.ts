@@ -7,8 +7,10 @@ import type { Resolvers } from '@/generated/schema.js'
 
 const weatherResolver: Partial<Resolvers> = {
   Query: {
-    singleDayWeather: (_, { city }) => getSingleDayWeather(city),
-    multiDayWeather: (_, { city }) => getMultiDayWeather(city),
+    singleDayWeather: (_, { latitude, longitude }) =>
+      getSingleDayWeather({ latitude, longitude }),
+    multiDayWeather: (_, { latitude, longitude }) =>
+      getMultiDayWeather({ latitude, longitude }),
   },
 }
 
