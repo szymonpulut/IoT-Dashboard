@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import useTheme from '@/src/hooks/useTheme.hook'
 
-import { mapWeatherCodeToImage } from '../mapWeatherCodeToImage.util'
+import { mapWeatherCodeToImage } from '../../utils/mapWeatherCodeToImage.util'
 
 export interface SingleDayComponentProps {
   weather: {
