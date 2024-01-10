@@ -51,6 +51,11 @@ type SmallGateStatusEvent {
   status: SmallGateStatus!
 }
 
+type SensorListUpdate {
+  name: String!
+  value: Float!
+}
+
 type SingleDayWeather {
   temperature: SingleDayTemperature!
   weatherCode: Int!
@@ -64,11 +69,6 @@ type SingleDayTemperature {
 type MultiDayWeather {
   temperature: Float!
   weatherCode: Int!
-}
-
-type SensorListUpdate {
-  name: String!
-  value: Float!
 }
 
 schema {
