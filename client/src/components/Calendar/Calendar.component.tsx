@@ -1,27 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import CalendarEventComponent from './CalendarEvent.component'
-import { useCalendar } from './useCalendar.query'
+import CalendarWithAuthenticationComponent from './CalendarWithAuthentication.component'
 
 const CalendarComponent: React.FC = () => {
-  const { data, loading, error } = useCalendar()
-
-  if (loading) {
-    return <CalendarComponentStyled>Loading...</CalendarComponentStyled>
-  }
-
-  if (error) {
-    return <CalendarComponentStyled>Error</CalendarComponentStyled>
-  }
-
-  const { calendar } = data!
-
   return (
     <CalendarComponentStyled>
-      {calendar.events.map((event) => (
-        <CalendarEventComponent name={event.name} date={event.date} />
-      ))}
+      <CalendarWithAuthenticationComponent />
     </CalendarComponentStyled>
   )
 }
