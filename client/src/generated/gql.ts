@@ -13,6 +13,9 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
+    "\n  mutation AuthenticateCalendar($userId: String!, $code: String!) {\n    calendar {\n      authenticate(userId: $userId, code: $code)\n    }\n  }\n": types.AuthenticateCalendarDocument,
+    "\n  query Calendar($userId: String!) {\n    calendar: calendar {\n      events(userId: $userId) {\n        name\n        start {\n          dateTime\n          timeZone\n        }\n      }\n    }\n  }\n": types.CalendarDocument,
+    "\n  query CalendarLogin($userId: String!) {\n    calendar {\n      authentication {\n        loginStatus(userId: $userId)\n        loginUrl(userId: $userId)\n      }\n    }\n  }\n": types.CalendarLoginDocument,
     "\n  subscription MainGateStatus {\n    mainGateStatus {\n      status\n    }\n  }\n": types.MainGateStatusDocument,
     "\n  subscription SmallGateStatus {\n    smallGateStatus {\n      status\n    }\n  }\n": types.SmallGateStatusDocument,
     "\n  mutation OpenMainGate($toggle: Boolean!) {\n    mainGate(toggle: $toggle)\n  }\n": types.OpenMainGateDocument,
@@ -36,6 +39,18 @@ const documents = {
  */
 export function graphql(source: string): unknown;
 
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  mutation AuthenticateCalendar($userId: String!, $code: String!) {\n    calendar {\n      authenticate(userId: $userId, code: $code)\n    }\n  }\n"): (typeof documents)["\n  mutation AuthenticateCalendar($userId: String!, $code: String!) {\n    calendar {\n      authenticate(userId: $userId, code: $code)\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query Calendar($userId: String!) {\n    calendar: calendar {\n      events(userId: $userId) {\n        name\n        start {\n          dateTime\n          timeZone\n        }\n      }\n    }\n  }\n"): (typeof documents)["\n  query Calendar($userId: String!) {\n    calendar: calendar {\n      events(userId: $userId) {\n        name\n        start {\n          dateTime\n          timeZone\n        }\n      }\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  query CalendarLogin($userId: String!) {\n    calendar {\n      authentication {\n        loginStatus(userId: $userId)\n        loginUrl(userId: $userId)\n      }\n    }\n  }\n"): (typeof documents)["\n  query CalendarLogin($userId: String!) {\n    calendar {\n      authentication {\n        loginStatus(userId: $userId)\n        loginUrl(userId: $userId)\n      }\n    }\n  }\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
