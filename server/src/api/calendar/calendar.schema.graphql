@@ -1,0 +1,31 @@
+type Query {
+  calendar: CalendarQueryType!
+}
+
+type Mutation {
+  calendar: CalendarMutation!
+}
+
+type CalendarQueryType {
+  events(userId: String!): [Event!]!
+  authentication: CalendarAuthenticationQuery!
+}
+
+type EventTime {
+  dateTime: String!
+  timeZone: String!
+}
+
+type Event {
+  name: String!
+  start: EventTime!
+}
+
+type CalendarAuthenticationQuery {
+  loginStatus(userId: String!): Boolean!
+  loginUrl(userId: String!): String!
+}
+
+type CalendarMutation {
+  authenticate(userId: String!, code: String!): Boolean!
+}
