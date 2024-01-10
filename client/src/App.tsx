@@ -13,9 +13,8 @@ import './index.css'
 
 const App: React.FC = () => {
   const { currentTheme } = useTheme()
-  const [cameraModalIsOpen, setCameraModalIsOpen] = useState(false)
 
-  console.log(cameraModalIsOpen, 'cmis')
+  const [cameraModalIsOpen, setCameraModalIsOpen] = useState(false)
 
   return (
     <ThemeProvider theme={currentTheme}>
