@@ -50,6 +50,7 @@ const WeatherComponent: React.FC = () => {
 
 const WeatherComponentStyled = styled.div`
   grid-area: weather;
+  background-color: ${({ theme }): string => theme.colors.weatherTodayBg};
 
   display: grid;
   grid-template-columns: 1fr 1fr;
