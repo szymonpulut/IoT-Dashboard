@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import playAlertSound from '@/src/utils/playAlertSound.utils'
+import playAlertSound from '@/src/utils/playAlertSound.util'
 
 import {
   useMainGateStatusSubscription,

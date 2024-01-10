@@ -3,7 +3,7 @@ import { useCallback } from 'react'
 import darkTheme from '../themes/dark.theme'
 import lightTheme from '../themes/light.theme'
 import type Theme from '../themes/theme.type'
-import { MINUTE_TO_MILLISECOND } from '../utils/timeUnitConversion.utils'
+import { MINUTE_TO_MILLISECOND } from '../utils/timeUnitConversion.util'
 
 import useInterval from './useInterval.hook'
 import useSettings from './useSettings.hook'

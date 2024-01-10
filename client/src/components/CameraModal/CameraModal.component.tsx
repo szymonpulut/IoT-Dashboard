@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
 import useInterval from '@/src/hooks/useInterval.hook'
-import { SECOND_TO_MILLISECOND } from '@/src/utils/timeUnitConversion.utils'
+import { SECOND_TO_MILLISECOND } from '@/src/utils/timeUnitConversion.util'
 
 import BackdropComponent from './Backdrop.component'
 
