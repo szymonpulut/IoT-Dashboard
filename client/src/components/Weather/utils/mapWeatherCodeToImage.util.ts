@@ -6,6 +6,7 @@ const isInRange = (value: number, low: number, high: number): boolean => {
   return value >= low && value <= high
 }
 
+// This is a function that I wrote a long time ago; I'm not sure how accurate it is, but it works pretty well
 export const mapWeatherCodeToImage = (
   code: number,
   themeName: ThemeList,
