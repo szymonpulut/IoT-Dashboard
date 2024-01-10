@@ -16,8 +16,8 @@ const CalendarWithAuthenticationComponent: React.FC = () => {
 
   const { data, loading, error } = useCalendarLoginData()
 
-  const handleLogin = useCallback(async () => {
-    await window.open(data!.calendar.authentication.loginUrl)
+  const handleLogin = useCallback(() => {
+    window.open(data!.calendar.authentication.loginUrl)
   }, [data])
 
   if (error) {
