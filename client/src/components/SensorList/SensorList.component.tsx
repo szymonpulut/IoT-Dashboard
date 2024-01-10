@@ -23,7 +23,9 @@ const SensorListComponent: React.FC<SensorListComponentProps> = ({
   }
 
   const { sensorListUpdates } = data!
-  const sortedSensorListUpdates = sensorListUpdates.sort(sortSensorListEntries)
+  const sortedSensorListUpdates = [...sensorListUpdates].sort(
+    sortSensorListEntries,
+  )
 
   return (
     <SensorListComponentStyled onClick={onClick}>
