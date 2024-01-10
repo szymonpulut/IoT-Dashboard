@@ -22,6 +22,9 @@ const GateControlComponent: React.FC = () => {
   const [handleOpenMainGate] = useOpenMainGateMutation()
   const [handleOpenSmallGate] = useOpenSmallGateMutation()
 
+  // Play sound whenever the status of the gate changes
+  // Eventually this should trigger only on changing from CLOSED to OPEN
+  // This also triggers when the page is loaded, but that's not a big deal
   useEffect(() => {
     playAlertSound()
   }, [mainGateStatus, smallGateStatus])
