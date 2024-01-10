@@ -19,8 +19,8 @@ const GateControlComponent: React.FC = () => {
   const { status: mainGateStatus } = useMainGateStatusSubscription()
   const { status: smallGateStatus } = useSmallGateStatusSubscription()
 
-  const { handleOpenMainGate } = useOpenMainGateMutation()
-  const { handleOpenSmallGate } = useOpenSmallGateMutation()
+  const [handleOpenMainGate] = useOpenMainGateMutation()
+  const [handleOpenSmallGate] = useOpenSmallGateMutation()
 
   useEffect(() => {
     playAlertSound()
