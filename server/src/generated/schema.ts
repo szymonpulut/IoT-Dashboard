@@ -34,6 +34,56 @@ export type AirQualityPollutionData = {
   value: Scalars['Float']['output'];
 };
 
+export type CalendarAuthenticationQuery = {
+  __typename?: 'CalendarAuthenticationQuery';
+  loginStatus: Scalars['Boolean']['output'];
+  loginUrl: Scalars['String']['output'];
+};
+
+
+export type CalendarAuthenticationQueryLoginStatusArgs = {
+  userId: Scalars['String']['input'];
+};
+
+
+export type CalendarAuthenticationQueryLoginUrlArgs = {
+  userId: Scalars['String']['input'];
+};
+
+export type CalendarMutation = {
+  __typename?: 'CalendarMutation';
+  authenticate: Scalars['Boolean']['output'];
+};
+
+
+export type CalendarMutationAuthenticateArgs = {
+  code: Scalars['String']['input'];
+  userId: Scalars['String']['input'];
+};
+
+export type CalendarQueryType = {
+  __typename?: 'CalendarQueryType';
+  authentication: CalendarAuthenticationQuery;
+  events: Array<Event>;
+};
+
+
+export type CalendarQueryTypeEventsArgs = {
+  userId: Scalars['String']['input'];
+};
+
+export type Event = {
+  __typename?: 'Event';
+  name: Scalars['String']['output'];
+  start: EventTime;
+};
+
+export type EventTime = {
+  __typename?: 'EventTime';
+  dateTime: Scalars['String']['output'];
+  timeZone: Scalars['String']['output'];
+};
+
 export enum MainGateStatus {
   Closed = 'CLOSED',
   Open = 'OPEN',
@@ -54,6 +104,7 @@ export type MultiDayWeather = {
 
 export type Mutation = {
   __typename?: 'Mutation';
+  calendar: CalendarMutation;
   mainGate: Scalars['Boolean']['output'];
   smallGate: Scalars['Boolean']['output'];
 };
@@ -71,6 +122,7 @@ export type MutationSmallGateArgs = {
 export type Query = {
   __typename?: 'Query';
   airQuality: AirQuality;
+  calendar: CalendarQueryType;
   multiDayWeather: Array<MultiDayWeather>;
   singleDayWeather: SingleDayWeather;
 };
@@ -205,6 +257,11 @@ export type ResolversTypes = {
   AirQualityData: ResolverTypeWrapper<AirQualityData>;
   AirQualityPollutionData: ResolverTypeWrapper<AirQualityPollutionData>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
+  CalendarAuthenticationQuery: ResolverTypeWrapper<CalendarAuthenticationQuery>;
+  CalendarMutation: ResolverTypeWrapper<CalendarMutation>;
+  CalendarQueryType: ResolverTypeWrapper<CalendarQueryType>;
+  Event: ResolverTypeWrapper<Event>;
+  EventTime: ResolverTypeWrapper<EventTime>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   MainGateStatus: MainGateStatus;
@@ -227,6 +284,11 @@ export type ResolversParentTypes = {
   AirQualityData: AirQualityData;
   AirQualityPollutionData: AirQualityPollutionData;
   Boolean: Scalars['Boolean']['output'];
+  CalendarAuthenticationQuery: CalendarAuthenticationQuery;
+  CalendarMutation: CalendarMutation;
+  CalendarQueryType: CalendarQueryType;
+  Event: Event;
+  EventTime: EventTime;
   Float: Scalars['Float']['output'];
   Int: Scalars['Int']['output'];
   MainGateStatusEvent: MainGateStatusEvent;
@@ -259,6 +321,35 @@ export type AirQualityPollutionDataResolvers<ContextType = any, ParentType exten
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
+export type CalendarAuthenticationQueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['CalendarAuthenticationQuery'] = ResolversParentTypes['CalendarAuthenticationQuery']> = {
+  loginStatus?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<CalendarAuthenticationQueryLoginStatusArgs, 'userId'>>;
+  loginUrl?: Resolver<ResolversTypes['String'], ParentType, ContextType, RequireFields<CalendarAuthenticationQueryLoginUrlArgs, 'userId'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CalendarMutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['CalendarMutation'] = ResolversParentTypes['CalendarMutation']> = {
+  authenticate?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<CalendarMutationAuthenticateArgs, 'code' | 'userId'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type CalendarQueryTypeResolvers<ContextType = any, ParentType extends ResolversParentTypes['CalendarQueryType'] = ResolversParentTypes['CalendarQueryType']> = {
+  authentication?: Resolver<ResolversTypes['CalendarAuthenticationQuery'], ParentType, ContextType>;
+  events?: Resolver<Array<ResolversTypes['Event']>, ParentType, ContextType, RequireFields<CalendarQueryTypeEventsArgs, 'userId'>>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type EventResolvers<ContextType = any, ParentType extends ResolversParentTypes['Event'] = ResolversParentTypes['Event']> = {
+  name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  start?: Resolver<ResolversTypes['EventTime'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
+export type EventTimeResolvers<ContextType = any, ParentType extends ResolversParentTypes['EventTime'] = ResolversParentTypes['EventTime']> = {
+  dateTime?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  timeZone?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
+};
+
 export type MainGateStatusEventResolvers<ContextType = any, ParentType extends ResolversParentTypes['MainGateStatusEvent'] = ResolversParentTypes['MainGateStatusEvent']> = {
   status?: Resolver<ResolversTypes['MainGateStatus'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -271,12 +362,14 @@ export type MultiDayWeatherResolvers<ContextType = any, ParentType extends Resol
 };
 
 export type MutationResolvers<ContextType = any, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = {
+  calendar?: Resolver<ResolversTypes['CalendarMutation'], ParentType, ContextType>;
   mainGate?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationMainGateArgs, 'toggle'>>;
   smallGate?: Resolver<ResolversTypes['Boolean'], ParentType, ContextType, RequireFields<MutationSmallGateArgs, 'toggle'>>;
 };
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   airQuality?: Resolver<ResolversTypes['AirQuality'], ParentType, ContextType, RequireFields<QueryAirQualityArgs, 'latitude' | 'longitude'>>;
+  calendar?: Resolver<ResolversTypes['CalendarQueryType'], ParentType, ContextType>;
   multiDayWeather?: Resolver<Array<ResolversTypes['MultiDayWeather']>, ParentType, ContextType, RequireFields<QueryMultiDayWeatherArgs, 'latitude' | 'longitude'>>;
   singleDayWeather?: Resolver<ResolversTypes['SingleDayWeather'], ParentType, ContextType, RequireFields<QuerySingleDayWeatherArgs, 'latitude' | 'longitude'>>;
 };
@@ -314,6 +407,11 @@ export type Resolvers<ContextType = any> = {
   AirQuality?: AirQualityResolvers<ContextType>;
   AirQualityData?: AirQualityDataResolvers<ContextType>;
   AirQualityPollutionData?: AirQualityPollutionDataResolvers<ContextType>;
+  CalendarAuthenticationQuery?: CalendarAuthenticationQueryResolvers<ContextType>;
+  CalendarMutation?: CalendarMutationResolvers<ContextType>;
+  CalendarQueryType?: CalendarQueryTypeResolvers<ContextType>;
+  Event?: EventResolvers<ContextType>;
+  EventTime?: EventTimeResolvers<ContextType>;
   MainGateStatusEvent?: MainGateStatusEventResolvers<ContextType>;
   MultiDayWeather?: MultiDayWeatherResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
