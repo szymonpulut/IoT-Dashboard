@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
@@ -26,20 +26,12 @@ const GateControlComponent: React.FC = () => {
     playAlertSound()
   }, [mainGateStatus, smallGateStatus])
 
-  const onMainGateOpen = useCallback(() => {
-    handleOpenMainGate()
-  }, [handleOpenMainGate])
-
-  const onSmallGateOpen = useCallback(() => {
-    handleOpenSmallGate()
-  }, [handleOpenSmallGate])
-
   return (
     <GateControlComponentStyled>
-      <SmallGateButtonComponent onClick={onSmallGateOpen} />
+      <SmallGateButtonComponent onClick={handleOpenSmallGate} />
       <MainGateButtonComponent
         status={mainGateStatus ?? 'UNKNOWN'}
-        onClick={onMainGateOpen}
+        onClick={handleOpenMainGate}
       />
     </GateControlComponentStyled>
   )
