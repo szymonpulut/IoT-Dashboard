@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 
-import { useBaseUrl } from '@/src/hooks/useBaseUrl.hook'
-import type { UrlParamsObject } from '@/src/hooks/useUrlParams.hook'
+import { useBaseUrl } from '@/src/common/hooks/useBaseUrl.hook'
+import type { UrlParamsObject } from '@/src/common/hooks/useUrlParams.hook'
 
 import { CALENDAR_CALLBACK_CODE_URL_PARAM } from '../Calendar.consts'
 

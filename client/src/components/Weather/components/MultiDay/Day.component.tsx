@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import useTheme from '@/src/hooks/useTheme.hook'
+import useTheme from '@/src/common/hooks/useTheme.hook'
 
 import { mapWeatherCodeToImage } from '../../utils/mapWeatherCodeToImage.util'
 

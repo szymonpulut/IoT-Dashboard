@@ -1,4 +1,4 @@
-import type { ThemeList } from '@/src/themes/themeList.consts'
+import type { ThemeList } from '@/src/common/themes/themeList.consts'
 
 import loadWeatherIcons from './loadWeatherIcons.util'
 

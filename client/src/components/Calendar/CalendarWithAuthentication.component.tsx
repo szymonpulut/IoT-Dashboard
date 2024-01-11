@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react'
 
-import useUrlParams from '@/src/hooks/useUrlParams.hook'
+import useUrlParams from '@/src/common/hooks/useUrlParams.hook'
 
 import { useAutoAuthenticateCalendar } from './hooks/useAutoAuthenticateCalendar.hook'
 import { useAuthenticateCalendarMutation } from './queries/useAuthenticateCalendarMutation.query'

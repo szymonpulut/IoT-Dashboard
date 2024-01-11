@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react'
 
-import useInterval from '@/src/hooks/useInterval.hook'
-import { SECOND_TO_MILLISECOND } from '@/src/utils/timeUnitConversion.util'
+import useInterval from '@/src/common/hooks/useInterval.hook'
+import { SECOND_TO_MILLISECOND } from '@/src/common/utils/timeUnitConversion.util'
 
 import {
   getDateTextFromDate,

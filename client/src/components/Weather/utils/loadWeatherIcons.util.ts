@@ -10,7 +10,7 @@ import sunImageDark from '@/src/assets/images/weather/sun_dark.png'
 import sunImageLight from '@/src/assets/images/weather/sun_light.png'
 import thunderstormImageDark from '@/src/assets/images/weather/thunderstorm_dark.png'
 import thunderstormImageLight from '@/src/assets/images/weather/thunderstorm_light.png'
-import type { ThemeList } from '@/src/themes/themeList.consts'
+import type { ThemeList } from '@/src/common/themes/themeList.consts'
 
 export type WeatherIcons = {
   [key in ThemeList]: {
