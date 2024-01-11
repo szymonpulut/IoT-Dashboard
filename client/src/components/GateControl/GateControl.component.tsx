@@ -1,8 +1,8 @@
-import React, { useCallback } from 'react'
+import React from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import playAlertSound from '@/src/utils/playAlertSound.utils'
+import playAlertSound from '@/src/utils/playAlertSound.util'
 
 import {
   useMainGateStatusSubscription,
@@ -19,27 +19,22 @@ const GateControlComponent: React.FC = () => {
   const { status: mainGateStatus } = useMainGateStatusSubscription()
   const { status: smallGateStatus } = useSmallGateStatusSubscription()
 
-  const { handleOpenMainGate } = useOpenMainGateMutation()
-  const { handleOpenSmallGate } = useOpenSmallGateMutation()
+  const [handleOpenMainGate] = useOpenMainGateMutation()
+  const [handleOpenSmallGate] = useOpenSmallGateMutation()
 
+  // Play sound whenever the status of the gate changes
+  // Eventually this should trigger only on changing from CLOSED to OPEN
+  // This also triggers when the page is loaded, but that's not a big deal
   useEffect(() => {
     playAlertSound()
   }, [mainGateStatus, smallGateStatus])
 
-  const onMainGateOpen = useCallback(() => {
-    handleOpenMainGate()
-  }, [handleOpenMainGate])
-
-  const onSmallGateOpen = useCallback(() => {
-    handleOpenSmallGate()
-  }, [handleOpenSmallGate])
-
   return (
     <GateControlComponentStyled>
-      <SmallGateButtonComponent onClick={onSmallGateOpen} />
+      <SmallGateButtonComponent onClick={handleOpenSmallGate} />
       <MainGateButtonComponent
         status={mainGateStatus ?? 'UNKNOWN'}
-        onClick={onMainGateOpen}
+        onClick={handleOpenMainGate}
       />
     </GateControlComponentStyled>
   )

@@ -21,7 +21,7 @@ const useOpenMainGateMutation = () => {
     await openMainGate({ variables: { toggle: true } })
   }
 
-  return { handleOpenMainGate }
+  return [handleOpenMainGate]
 }
 
 const useOpenSmallGateMutation = () => {
@@ -31,7 +31,7 @@ const useOpenSmallGateMutation = () => {
     await openSmallGate({ variables: { toggle: true } })
   }
 
-  return { handleOpenSmallGate }
+  return [handleOpenSmallGate]
 }
 
 export { useOpenMainGateMutation, useOpenSmallGateMutation }

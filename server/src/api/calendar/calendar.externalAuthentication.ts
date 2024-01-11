@@ -9,6 +9,9 @@ import {
 const oAuthClientsMap = new Map<string, OAuth2Client>()
 
 export const getOAuthClient = (userId: string) => {
+  // For now it's a very simple check that relies on UI sending correct userId (spoofing can happen)
+  // But since this is only for personal use, and 1 backend will server 1 UI too
+  // This is not a big issue
   if (oAuthClientsMap.has(userId)) {
     return oAuthClientsMap.get(userId)
   }

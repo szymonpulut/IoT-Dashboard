@@ -18,19 +18,24 @@ src
 │   index.css
 │   main.tsx
 │
-└── components
-│   └── Name
-|      └──└── Name.component.tsx
-│         └── queries
-│         └──└── useQuery.query.ts
-│         └── hooks
-│         └──└── useHook.hook.ts
-│         └── utils
-│         └──└── tool.util.ts
-└── contexts
-└── hooks
-└── utils
-└── themes
+├── components
+│   └── <Name>
+│       └── <Name>.component.tsx
+│       └── queries
+│           └── useQuery.query.ts
+│       └── hooks
+│           └── useHook.hook.ts
+│       └── utils
+│           └── tool.util.ts
+│
+├── contexts
+│
+├── hooks
+│
+├── utils
+│
+├── themes
+│
 └── generated (Apollo GraphQL - Codegen)
 ```
 
@@ -41,6 +46,17 @@ src
 `npm run dev` starts development server
 `npm run build` creates production ready package
 `npm run codegen` generates schemas for Apollo GraphQL
+
+## Environment variables
+
+| Variable                     | Description                                 |
+| ---------------------------- | ------------------------------------------- |
+| VITE_CAMERA_FEED_URL         | URL for accessing the camera feed           |
+| VITE_APOLLO_GRAPHQL_HTTP_URL | HTTP URL for the Apollo GraphQL server      |
+| VITE_APOLLO_GRAPHQL_WS_URL   | WebSocket URL for the Apollo GraphQL server |
+| VITE_LOCATION_LATITUDE       | Latitude information for location tracking  |
+| VITE_LOCATION_LONGITUDE      | Longitude information for location tracking |
+| VITE_CALENDAR_USER_ID        | User ID for accessing calendar-related data |
 
 ## TODO
 

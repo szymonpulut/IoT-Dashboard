@@ -14,7 +14,9 @@ export const decodeFactory =
     } catch (error) {
       if (error instanceof ZodError) {
         throw new ExternalAPISchemaValidationFailError(
-          `Failed to verify the schema of: ${codec}`,
+          `Failed to verify the schema <${codec}>, error: ${JSON.stringify(
+            error,
+          )}`,
         )
       } else {
         // noop; rethrow the original error
@@ -26,7 +28,7 @@ export const decodeFactory =
 interface FetchDataOptions<T> {
   apiUrl: string
   headers?: Record<string, string>
-  decoder: ZodType<T> // Adjust the type according to your decoder
+  decoder: ZodType<T>
 }
 
 export const fetchDataFactory = <T>({

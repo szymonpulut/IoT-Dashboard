@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
 import useInterval from '@/src/hooks/useInterval.hook'
-import { SECOND_TO_MILLISECOND } from '@/src/utils/timeUnitConversion.utils'
 
 import BackdropComponent from './Backdrop.component'
+import {
+  CAMERA_FEED_URL,
+  CAMERA_UPDATE_INTERVAL_IN_MS,
+} from './CameraModal.consts'
 
 interface CameraModalComponentProps {
   onClick: () => void
   isOn: boolean
 }
-
-const UPDATE_INTERVAL_IN_MS = 3 * SECOND_TO_MILLISECOND
 
 const CameraModalComponent: React.FC<CameraModalComponentProps> = ({
   onClick,
@@ -30,13 +31,13 @@ const CameraModalComponent: React.FC<CameraModalComponentProps> = ({
     if (isOn) {
       refreshCameraView(isOn)
     }
-  }, UPDATE_INTERVAL_IN_MS)
+  }, CAMERA_UPDATE_INTERVAL_IN_MS)
 
   // preventCaching is necessary, so the browser does not cache the image
   const preventCaching = `&preventCaching=${Math.floor(
     Math.random() * 1_000_000,
   )}`
-  const cameraView = `${import.meta.env.VITE_CAMERA_FEED_URL}${preventCaching}`
+  const cameraView = `${CAMERA_FEED_URL}${preventCaching}`
 
   return isOn
     ? ReactDOM.createPortal(
