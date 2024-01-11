@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect } from 'react'
 import styled from 'styled-components'
 
-import playAlertSound from '@/src/utils/playAlertSound.util'
+import playAlertSound from '@/src/common/utils/playAlertSound.util'
 
 import {
   useMainGateStatusSubscription,

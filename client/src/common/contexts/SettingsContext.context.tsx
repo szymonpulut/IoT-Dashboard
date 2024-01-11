@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 import { createContext, useCallback, useState } from 'react'
 
-import darkTheme from '@/src/themes/dark.theme'
+import darkTheme from '@/src/common/themes/dark.theme'
 
 import type Theme from '../themes/theme.type'
 

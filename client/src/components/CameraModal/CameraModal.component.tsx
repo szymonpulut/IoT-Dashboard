@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import styled from 'styled-components'
 
-import useInterval from '@/src/hooks/useInterval.hook'
+import useInterval from '@/src/common/hooks/useInterval.hook'
 
 import BackdropComponent from './Backdrop.component'
 import {

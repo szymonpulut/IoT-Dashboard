@@ -1,4 +1,4 @@
-import { SECOND_TO_MILLISECOND } from '@/src/utils/timeUnitConversion.util'
+import { SECOND_TO_MILLISECOND } from '@/src/common/utils/timeUnitConversion.util'
 
 export const CAMERA_FEED_URL = import.meta.env.VITE_CAMERA_FEED_URL
 

@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import styled, { ThemeProvider } from 'styled-components'
 
+import useTheme from './common/hooks/useTheme.hook'
 import CalendarComponent from './components/Calendar/Calendar.component'
 import CameraModalComponent from './components/CameraModal/CameraModal.component'
 import ClockComponent from './components/Clock/Clock.component'
 import GateControlComponent from './components/GateControl/GateControl.component'
 import SensorListComponent from './components/SensorList/SensorList.component'
 import WeatherComponent from './components/Weather/Weather.component'
-import useTheme from './hooks/useTheme.hook'
 
 import './index.css'
 
