@@ -26,7 +26,7 @@ export const decodeFactory =
 interface FetchDataOptions<T> {
   apiUrl: string
   headers?: Record<string, string>
-  decoder: ZodType<T> // Adjust the type according to your decoder
+  decoder: ZodType<T>
 }
 
 export const fetchDataFactory = <T>({
