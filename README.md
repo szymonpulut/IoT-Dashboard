@@ -16,10 +16,11 @@ Displays current time, weather, forecast, air quality data. Connects to Google C
 
 ## Technologies used & features
 
-Frontend: Vite, TypeScript, React, styled-components, Apollo Client, GraphQL, WebSockets
+Frontend: Vite, TypeScript, React, styled-components, Apollo Client, GraphQL, WebSockets<br />
 Backend: TypeScript, Express.js, Apollo, GraphQL, MQTT, Zod
 
 ## TODO
 
 - Implement a seamless way of launching both apps (Docker?)
+- Improve interactions (add slide-out menu for night mode, silent mode, camera feed)
 - A few things specific to BE/FE
