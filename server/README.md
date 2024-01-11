@@ -48,6 +48,18 @@ Schemas for GraphQL are generated using a tool `@graphql-tools/merge` - it autom
 `npm run build` creates production ready package
 `npm run genCodegen` generates schemas for Apollo GraphQL
 
+## Environment variables
+
+| Variable               | Description                                               |
+| ---------------------- | --------------------------------------------------------- |
+| HTTP_PORT              | The port on which the HTTP server will listen             |
+| MQTT_HOST              | The MQTT broker host address                              |
+| MQTT_PORT              | The port on which the MQTT broker is running              |
+| WEATHER_API_KEY        | API key for accessing weather data                        |
+| AIR_QUALITY_API_KEY    | API key for accessing air quality data                    |
+| CALENDAR_CLIENT_ID     | Client ID for authenticating with Google Calendar API     |
+| CALENDAR_CLIENT_SECRET | Client secret for authenticating with Google Calendar API |
+
 ## TODO
 
 - Add Calendar API integration (OAuth2 issues)
