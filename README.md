@@ -22,4 +22,5 @@ Backend: TypeScript, Express.js, Apollo, GraphQL, MQTT, Zod
 ## TODO
 
 - Implement a seamless way of launching both apps (Docker?)
+- Improve interactions (add slide-out menu for night mode, silent mode, camera feed)
 - A few things specific to BE/FE

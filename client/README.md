@@ -67,3 +67,4 @@ npm install
 
 - Rework `@` import alias - it should point to `src/`
 - Dockerise
+- Improve interactions (add slide-out menu for night mode, silent mode, camera feed)
