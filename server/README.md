@@ -17,22 +17,27 @@ src
 │   server.ts
 │   resolvers.ts
 │   typeDefs.ts
-└── api
+│
+├── api
 │   └── internal
-|      └──└── internal.resolver.ts
-│      └──└── internal.schema.graphql
-│      └──└── handlers
-│      └──└──└── internal.handler.ts
+│       ├── internal.resolver.ts
+│       ├── internal.schema.graphql
+│       ├── handlers
+│       │   └── internal.handler.ts
+│
 │   └── external
-|      └──└── external.configConsts.ts
-|      └──└── external.dataSources.ts
-|      └──└── external.externalMappings.ts
-|      └──└── external.externalSchema.ts
-│      └──└── external.resolver.ts
-│      └──└── external.schema.graphql
-│      └──└── external.types.ts
-└── mqtt
-└── utils
+│       ├── external.configConsts.ts
+│       ├── external.dataSources.ts
+│       ├── external.externalMappings.ts
+│       ├── external.externalSchema.ts
+│       ├── external.resolver.ts
+│       ├── external.schema.graphql
+│       ├── external.types.ts
+│
+├── mqtt
+│
+├── utils
+│
 └── generated (Apollo GraphQL - Codegen)
 ```
 

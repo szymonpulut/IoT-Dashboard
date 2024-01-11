@@ -18,19 +18,24 @@ src
 │   index.css
 │   main.tsx
 │
-└── components
-│   └── Name
-|      └──└── Name.component.tsx
-│         └── queries
-│         └──└── useQuery.query.ts
-│         └── hooks
-│         └──└── useHook.hook.ts
-│         └── utils
-│         └──└── tool.util.ts
-└── contexts
-└── hooks
-└── utils
-└── themes
+├── components
+│   └── <Name>
+│       └── <Name>.component.tsx
+│       └── queries
+│           └── useQuery.query.ts
+│       └── hooks
+│           └── useHook.hook.ts
+│       └── utils
+│           └── tool.util.ts
+│
+├── contexts
+│
+├── hooks
+│
+├── utils
+│
+├── themes
+│
 └── generated (Apollo GraphQL - Codegen)
 ```
 
