@@ -21,6 +21,5 @@ Backend: TypeScript, Express.js, Apollo, GraphQL, MQTT, Zod
 
 ## TODO
 
-- Add backend calendar integration (currently it doesn't work yet - due to issues with OAuth2)
 - Implement a seamless way of launching both apps (Docker?)
 - A few things specific to BE/FE

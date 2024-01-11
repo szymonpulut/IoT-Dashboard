@@ -67,7 +67,6 @@ Schemas for GraphQL are generated using a tool `@graphql-tools/merge` - it autom
 
 ## TODO
 
-- Add Calendar API integration (OAuth2 issues)
-- Add air quality API integration
 - Dockerise
 - Add simple authentication
+- Improve authentication for calendar caching
