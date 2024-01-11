@@ -44,11 +44,13 @@ src
 
 ## Running
 
-`npm install`
+```
+npm install
+```
 
-`npm run dev` starts development server
-`npm run build` creates production ready package
-`npm run codegen` generates schemas for Apollo GraphQL
+`npm run dev` starts development server<br />
+`npm run build` creates production ready package<br />
+`npm run codegen` generates schemas for Apollo GraphQL<br />
 
 ## Environment variables
 

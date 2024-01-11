@@ -49,9 +49,9 @@ Schemas for GraphQL are generated using a tool `@graphql-tools/merge` - it autom
 
 `npm install`
 
-`npm run start` starts development server
-`npm run build` creates production ready package
-`npm run genCodegen` generates schemas for Apollo GraphQL
+`npm run start` starts development server<br />
+`npm run build` creates production ready package<br />
+`npm run genCodegen` generates schemas for Apollo GraphQL<br />
 
 ## Environment variables
 

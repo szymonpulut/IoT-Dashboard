@@ -16,7 +16,7 @@ Displays current time, weather, forecast, air quality data. Connects to Google C
 
 ## Technologies used & features
 
-Frontend: Vite, TypeScript, React, styled-components, Apollo Client, GraphQL, WebSockets
+Frontend: Vite, TypeScript, React, styled-components, Apollo Client, GraphQL, WebSockets<br />
 Backend: TypeScript, Express.js, Apollo, GraphQL, MQTT, Zod
 
 ## TODO
