@@ -14,7 +14,9 @@ export const decodeFactory =
     } catch (error) {
       if (error instanceof ZodError) {
         throw new ExternalAPISchemaValidationFailError(
-          `Failed to verify the schema of: ${codec}`,
+          `Failed to verify the schema <${codec}>, error: ${JSON.stringify(
+            error,
+          )}`,
         )
       } else {
         // noop; rethrow the original error
