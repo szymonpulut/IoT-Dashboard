@@ -25,8 +25,6 @@ export const listEvents = async (
 
   const events = response.data.items
 
-  console.log(events)
-
   const parsedCalendarEvents = decodeEvents(events)
   const calendarEventList =
     mapCalendarEventsDTOToCalendarEventList(parsedCalendarEvents)
