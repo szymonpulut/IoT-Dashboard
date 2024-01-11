@@ -1,5 +1,6 @@
 type Query {
   airQuality(latitude: String!, longitude: String!): AirQuality!
+  calendar: CalendarQueryType!
   singleDayWeather(latitude: String!, longitude: String!): SingleDayWeather!
   multiDayWeather(latitude: String!, longitude: String!, dayCount: Int): [MultiDayWeather!]!
 }
@@ -20,8 +21,33 @@ type AirQualityPollutionData {
 }
 
 type Mutation {
+  calendar: CalendarMutation!
   mainGate(toggle: Boolean!): Boolean!
   smallGate(toggle: Boolean!): Boolean!
+}
+
+type CalendarQueryType {
+  events(userId: String!): [Event!]!
+  authentication: CalendarAuthenticationQuery!
+}
+
+type EventTime {
+  dateTime: String!
+  timeZone: String!
+}
+
+type Event {
+  name: String!
+  start: EventTime!
+}
+
+type CalendarAuthenticationQuery {
+  loginStatus(userId: String!): Boolean!
+  loginUrl(userId: String!): String!
+}
+
+type CalendarMutation {
+  authenticate(userId: String!, code: String!): Boolean!
 }
 
 type Subscription {
@@ -51,6 +77,11 @@ type SmallGateStatusEvent {
   status: SmallGateStatus!
 }
 
+type SensorListUpdate {
+  name: String!
+  value: Float!
+}
+
 type SingleDayWeather {
   temperature: SingleDayTemperature!
   weatherCode: Int!
@@ -64,11 +95,6 @@ type SingleDayTemperature {
 type MultiDayWeather {
   temperature: Float!
   weatherCode: Int!
-}
-
-type SensorListUpdate {
-  name: String!
-  value: Float!
 }
 
 schema {
