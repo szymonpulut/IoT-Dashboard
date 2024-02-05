@@ -1,13 +1,19 @@
 # Build stage
 FROM node:20-alpine as build
 WORKDIR /app/client
-COPY client/package*.json ./
+COPY package*.json .
 RUN npm install
-COPY client/ ./
-COPY client/.env .
+COPY ./src ./src
+COPY ./public ./public
+COPY ./tsconfig.json .
+COPY ./tsconfig.node.json .
+COPY ./vite.config.ts .
+COPY ./index.html .
+COPY ./.env .
 RUN npm run build
 
 # Serve stage
-FROM nginx:alpine
+FROM nginx:alpine as serve
 COPY --from=build /app/client/dist /usr/share/nginx/html
-EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

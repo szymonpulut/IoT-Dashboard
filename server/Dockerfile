@@ -1,17 +1,19 @@
 # Build stage
 FROM node:20-alpine as build
-WORKDIR /app/server
-COPY server/package*.json ./
-RUN npm install
-COPY server/ ./
+WORKDIR /usr/app/server
+COPY package*.json .
+RUN npm ci --production=false
+COPY ./src ./src
+COPY ./tsconfig.json .
+COPY ./.env .
 RUN npm run build
 
 # Serve stage
-FROM alpine:3
-WORKDIR /app/server
-COPY --from=build /app/server/dist /app/server
-COPY server/.env .
+FROM alpine:3 as serve
+WORKDIR /root/
+COPY --from=build /usr/app/server/. .
 
-RUN apk add --no-cache nodejs
+RUN apk add --no-cache nodejs npm
+RUN npm install -g tsx
 
-CMD ["node", "src/server.js"]
+CMD ["tsx", "./src/server.ts"]
