@@ -10,7 +10,7 @@ As you can check out in this repo's history, I created the original version of t
 
 ## Quick overview
 
-![iot-dashboard](https://github.com/szymonpulut/IoT-Dashboard/assets/1353480/6a3fdb7e-41e2-488f-8908-d2f401fb95cb)
+![iotdashboard](https://github.com/szymonpulut/IoTDashboard/assets/1353480/0a466076-e5c1-4dfe-9c7e-71b5c8811d24)
 
 Displays current time, weather, forecast, air quality data. Connects to Google Calendar to show upcoming events. Displays camera feed. Shows data from smart home sensors, and can open small and main gate; plays audio alert when gate opens. Features automatic night mode.
 
